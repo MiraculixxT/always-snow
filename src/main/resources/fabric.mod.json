@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "alwayssnow",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Always Snow",
   "description": "Let it snow everywhere!",
   "authors": ["Miraculixx"],
@@ -31,7 +31,7 @@
   },
   "depends": {
     "fabricloader": ">=0.14.21",
-    "minecraft": "~1.20",
+    "minecraft": "~1.21",
     "fabric-lifecycle-events-v1": "*",
     "fabric-language-kotlin": "*"
   }
