@@ -14,10 +14,10 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.21.3")
+    minecraft("com.mojang:minecraft:1.21.1")
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:0.16.9")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.108.0+1.21.3")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.108.0+1.21.1")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.12.3+kotlin.2.0.21")
     modApi("me.shedaniel.cloth:cloth-config-fabric:16.0.141") {
         exclude("net.fabricmc.fabric-api")
