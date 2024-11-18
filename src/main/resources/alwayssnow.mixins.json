@@ -6,8 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "MixinBiome",
-    "MixinLevel"
+    "MixinLevel",
+    "MixinWeatherEffectRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
