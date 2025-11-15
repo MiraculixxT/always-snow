@@ -14,17 +14,17 @@ public abstract class MixinBiome {
 
     @Shadow public abstract boolean hasPrecipitation();
 
-    @Shadow public abstract boolean coldEnoughToSnow(BlockPos blockPos);
+    @Shadow public abstract boolean coldEnoughToSnow(BlockPos blockPos, int i);
 
     @Inject(at = @At("HEAD"), method = "getPrecipitationAt", cancellable = true)
-    public void getPrecipitationAt(BlockPos blockPos, CallbackInfoReturnable<Biome.Precipitation> cir) {
+    public void getPrecipitationAt(BlockPos blockPos, int i, CallbackInfoReturnable<Biome.Precipitation> cir) {
         if (!hasPrecipitation()) {
             cir.setReturnValue(Biome.Precipitation.NONE);
         } else {
             if (AlwaysSnow.Companion.getConfig().alwaysSnow) {
                 cir.setReturnValue(Biome.Precipitation.SNOW);
             } else {
-                cir.setReturnValue(coldEnoughToSnow(blockPos) ? Biome.Precipitation.SNOW : Biome.Precipitation.RAIN);
+                cir.setReturnValue(coldEnoughToSnow(blockPos, i) ? Biome.Precipitation.SNOW : Biome.Precipitation.RAIN);
             }
         }
     }

@@ -3,11 +3,9 @@
   "minVersion": "0.8",
   "package": "de.miraculixx.alwayssnow.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-  ],
   "client": [
-    "MixinBiome",
-    "MixinLevel"
+    "MixinLevel",
+    "MixinBiome"
   ],
   "injectors": {
     "defaultRequire": 1
