@@ -1,6 +1,5 @@
 package de.miraculixx.alwayssnow.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import de.miraculixx.alwayssnow.AlwaysSnow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -21,6 +20,9 @@ public abstract class MixinLevel {
 
     @Inject(at = @At("RETURN"), method = "getRainLevel", cancellable = true)
     public void getRainLevel(float delta, CallbackInfoReturnable<Float> cir) {
+        Level level = (Level) (Object) this;
+        if (!level.isClientSide()) return; // Only modify rain level on client side
+
         if (AlwaysSnow.Companion.getConfig().weatherChange) {
             cir.setReturnValue(1.0F);
         } else {
@@ -30,16 +32,21 @@ public abstract class MixinLevel {
 
     @Inject(
         at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/world/level/biome/Biome;getPrecipitationAt(Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/world/level/biome/Biome$Precipitation;",
-            shift = At.Shift.BEFORE
+            value = "HEAD"
         ),
         method = "isRainingAt",
         cancellable = true
     )
-    public void isRainingAt(BlockPos blockPos, CallbackInfoReturnable<Boolean> cir, @Local Biome biome) {
+    public void isRainingAt(BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
+        Level level = (Level) (Object) this;
+        if (!level.isClientSide()) return; // Only modify on client side
+
         if (AlwaysSnow.Companion.getConfig().alwaysSnow) {
-            Level level = (Level) (Object) this;
+            if (!level.isRaining()) {
+                cir.setReturnValue(false);
+                return;
+            }
+            Biome biome = level.getBiome(blockPos).value();
             cir.setReturnValue(biome.getPrecipitationAt(blockPos, level.getSeaLevel()) != Biome.Precipitation.NONE);
         }
     }
