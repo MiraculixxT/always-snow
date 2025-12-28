@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.miraculixx"
-version = "1.0.3"
+version = "1.0.4"
 
 repositories {
     mavenCentral()
@@ -14,12 +14,12 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.21.10")
+    minecraft("com.mojang:minecraft:1.21.11")
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:0.18.1")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.138.3+1.21.10")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.13.7+kotlin.2.2.21")
-    modApi("me.shedaniel.cloth:cloth-config-fabric:20.0.149") {
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.140.2+1.21.11")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.13.8+kotlin.2.3.0")
+    modApi("me.shedaniel.cloth:cloth-config-fabric:21.11.153") {
         exclude("net.fabricmc.fabric-api")
     }
     modApi("com.terraformersmc:modmenu:16.0.0-rc.1")
