@@ -1,7 +1,7 @@
 plugins {
-    kotlin("jvm") version "2.2.21"
-    id("fabric-loom") version "1.14-SNAPSHOT"
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0-Beta2"
+    kotlin("jvm") version "2.4.10"
+    id("net.fabricmc.fabric-loom") version "1.17.19"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.4.10"
 }
 
 group = "de.miraculixx"
@@ -14,16 +14,15 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.21.11")
-    mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:0.18.1")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.140.2+1.21.11")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.13.8+kotlin.2.3.0")
-    modApi("me.shedaniel.cloth:cloth-config-fabric:21.11.153") {
+    minecraft("com.mojang:minecraft:26.1.2")
+    implementation("net.fabricmc:fabric-loader:0.19.3")
+    implementation("net.fabricmc.fabric-api:fabric-api:0.155.2+26.1.2")
+    implementation("net.fabricmc:fabric-language-kotlin:1.13.13+kotlin.2.4.10")
+    api("me.shedaniel.cloth:cloth-config-fabric:26.1.154") {
         exclude("net.fabricmc.fabric-api")
     }
-    modApi("com.terraformersmc:modmenu:16.0.0-rc.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    api("com.terraformersmc:modmenu:18.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
 }
 
 
@@ -31,5 +30,5 @@ tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(25)
 }
